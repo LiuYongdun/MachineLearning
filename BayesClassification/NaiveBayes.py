@@ -57,6 +57,13 @@ class NaiveBayes(object):
         return predicted_label
 
     def __calculate_possibility(self, each_group, vector, data_size):
+        """
+        计算概率
+        :param each_group:每一个类的所有数据
+        :param vector:
+        :param data_size:
+        :return:
+        """
         label = each_group[0][-1]
         possibilities = []
         label_possibility = each_group.__len__() / data_size
@@ -74,6 +81,13 @@ class NaiveBayes(object):
         return label, possibilities
 
     def __calculate_continuous(self, each_group, feature, i):
+        """
+        计算连续属性的概率，假设连续属性服从某种概率分布
+        :param each_group:
+        :param feature:
+        :param i:
+        :return:
+        """
         samples = []
         for record in each_group:
             sample = record[0][i]
@@ -83,6 +97,12 @@ class NaiveBayes(object):
         return possibility
 
     def __normal_distribution(self, samples, feature):
+        """
+        正态分布
+        :param samples:
+        :param feature:
+        :return:
+        """
         variance = samples.var()
         standard_deviation = math.sqrt(variance)
         mean = samples.mean()
@@ -93,6 +113,13 @@ class NaiveBayes(object):
         return possibility
 
     def __calculate_discrete(self, each_group, feature, i):
+        """
+        计算离散属性的概率，用频率估计概率
+        :param each_group:
+        :param feature:
+        :param i:
+        :return:
+        """
         count = 0
         possibility = 0
         for record in each_group:

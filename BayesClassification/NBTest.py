@@ -9,7 +9,6 @@ with open('./testSet.txt') as file:
         label = splits[-1]
         dataset.append([vector, label])
 
-
 naiveBayes=NaiveBayes.NaiveBayes(2)
 naiveBayes.train(dataset)
-print(naiveBayes.predict(['男', '30', '美国']))
+print(naiveBayes.predict([3,5]))
